@@ -1,0 +1,72 @@
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#use-a-microsoft-hosted-agent
+trigger:
+- '*'
+stages:
+- stage: Build
+  variables:
+    buildConfiguration: Release   
+  jobs:
+  - job: BuildAndTest
+    displayName: Build And Test
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk 3.1'
+      inputs:
+        packageType: sdk
+        version: 3.1.x
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+
+    - script: 'dotnet tool restore'
+      displayName: dotnet tool restore
+
+    - script: 'dotnet dotnet-gitversion /output buildserver'
+      displayName: Apply GitVersion
+
+    - task: DotNetCoreCLI@2
+      displayName: dotnet build
+      inputs:
+        projects: '**/*.csproj'
+        arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.NugetVersion) /p:InformationalVersion=$(GitVersion.InformationalVersion)'
+
+    - task: DotNetCoreCLI@2
+      displayName: dotnet test
+      inputs:
+        command: test
+        arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+        projects: 'test/**/*Tests.csproj'
+        nobuild: true
+
+#    - script: 'dotnet reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:Cobertura'
+#      displayName: GenerateReport
+
+#    - task: PublishCodeCoverageResults@1
+#      displayName: 'Publish code coverage'
+#      inputs:
+#        codeCoverageTool: Cobertura
+#        summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
+
+    - task: DotNetCoreCLI@2
+      displayName: dotnet pack
+      inputs:
+        command: 'pack'
+        nobuild: true
+        packagesToPack: 'src/**/*.csproj'
+        includesymbols: false
+        includesource: false
+        versioningScheme: 'byEnvVar'
+        versionEnvVar: 'GitVersion.NugetVersion'
+
+    - task: NuGetCommand@2
+      displayName: Publish Packages
+      condition: and(succeeded(),eq(variables['Build.SourceBranch'],'refs/heads/master'))
+      inputs:
+        command: 'push'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+        nuGetFeedType: 'external'
+        publishFeedCredentials: 'Nuget'
+       
+
+
+
