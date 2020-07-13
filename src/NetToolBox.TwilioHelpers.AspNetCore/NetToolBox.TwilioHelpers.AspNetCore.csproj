@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Library</OutputType>
+    <nullable>enable</nullable>
+    <RepositoryUrl>https://github.com/npnelson/TwilioHelpers</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Twilio abstractions and helpers</Description>
+    <Authors>npnelson</Authors>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetToolBox.TwilioHelpers\NetToolBox.TwilioHelpers.csproj" />
+  </ItemGroup>
+
+</Project>

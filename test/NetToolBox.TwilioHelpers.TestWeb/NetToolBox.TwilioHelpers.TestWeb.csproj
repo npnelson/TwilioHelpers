@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>17f8f5e5-7d07-4d64-ac00-b0aa9d199689</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NetToolBox.TwilioHelpers.AspNetCore\NetToolBox.TwilioHelpers.AspNetCore.csproj" />
+  </ItemGroup>
+
+</Project>
