@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NetToolBox.TwilioHelpers.AspNetCore.Abstractions;
+using NetToolBox.TwilioHelpers.Abstractions;
 
 namespace NetToolBox.TwilioHelpers.TestWeb
 {
@@ -35,12 +34,18 @@ namespace NetToolBox.TwilioHelpers.TestWeb
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapPost("/", async context =>
+                endpoints.MapGet("/", async context =>
                 {
-                    var validator = context.RequestServices.GetRequiredService<ITwilioSignatureValidator>();
-                    var isValid = validator.ValidateRequest(context.Request);
-                    await context.Response.WriteAsync($"Valid TwilioRequest={isValid}");
+                    var twilio = context.RequestServices.GetRequiredService<ITwilioServices>();
+                    await twilio.SendSMSMessageAsync("test message", "", "");
+
                 });
+                //endpoints.MapPost("/", async context =>
+                //{
+                //    var validator = context.RequestServices.GetRequiredService<ITwilioSignatureValidator>();
+                //    var isValid = validator.ValidateRequest(context.Request);
+                //    await context.Response.WriteAsync($"Valid TwilioRequest={isValid}");
+                //});
             });
         }
     }
