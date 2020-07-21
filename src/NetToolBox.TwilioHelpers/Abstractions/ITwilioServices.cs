@@ -7,8 +7,8 @@ namespace NetToolBox.TwilioHelpers.Abstractions
     public interface ITwilioServices
     {
         Task SendSMSMessageAsync(string bodyText, string fromPhoneNumber, string toPhoneNumber);
-        Task<Stream> GetRecordingWav(Uri recordingUri);
-        Task DeleteRecording(string pathSid, string pathAccountSid);
+        Task<Stream> GetRecordingWavAsync(Uri recordingUri);
+        Task DeleteRecordingAsync(string pathSid, string pathAccountSid);
 
     }
 }

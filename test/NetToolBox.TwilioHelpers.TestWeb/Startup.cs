@@ -37,8 +37,8 @@ namespace NetToolBox.TwilioHelpers.TestWeb
                 endpoints.MapGet("/", async context =>
                 {
                     var twilio = context.RequestServices.GetRequiredService<ITwilioServices>();
-                    var stream = await twilio.GetRecordingWav(new System.Uri(""));
-                    await twilio.DeleteRecording("", "");
+                    var stream = await twilio.GetRecordingWavAsync(new System.Uri(""));
+                    await twilio.DeleteRecordingAsync("", "");
                     //  await twilio.SendSMSMessageAsync("test message", "", "");
 
                 });

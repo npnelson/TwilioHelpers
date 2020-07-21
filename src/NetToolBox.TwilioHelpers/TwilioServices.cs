@@ -25,14 +25,14 @@ namespace NetToolBox.TwilioHelpers
             _logger = logger;
         }
 
-        public async Task DeleteRecording(string pathSid, string pathAccountSid)
+        public async Task DeleteRecordingAsync(string pathSid, string pathAccountSid)
         {
             var twilioRestClient = GetTwilioRestClient();
             await RecordingResource.DeleteAsync(pathSid, pathAccountSid, twilioRestClient).ConfigureAwait(false);
             _logger.LogInformation("Deleted Recording PathSid={PathSid} PathAccountSid={PathAccountSid}", pathSid, pathAccountSid);
         }
 
-        public async Task<Stream> GetRecordingWav(Uri recordingUri)
+        public async Task<Stream> GetRecordingWavAsync(Uri recordingUri)
         {
             var httpClient = _httpClientFactory.CreateClient();
             var audioStream = await httpClient.GetStreamAsync(recordingUri).ConfigureAwait(false);
