@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.TwilioHelpers.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetToolBox.TwilioHelpers.TestWeb", "test\NetToolBox.TwilioHelpers.TestWeb\NetToolBox.TwilioHelpers.TestWeb.csproj", "{DB59997D-2249-4F8C-96AC-A7D6FF8105AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwilioHelpersConsoleHost", "test\TwilioHelpersConsoleHost\TwilioHelpersConsoleHost.csproj", "{85B940D2-06DB-4610-9056-A54DE192BF18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{DB59997D-2249-4F8C-96AC-A7D6FF8105AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB59997D-2249-4F8C-96AC-A7D6FF8105AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB59997D-2249-4F8C-96AC-A7D6FF8105AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85B940D2-06DB-4610-9056-A54DE192BF18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85B940D2-06DB-4610-9056-A54DE192BF18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85B940D2-06DB-4610-9056-A54DE192BF18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85B940D2-06DB-4610-9056-A54DE192BF18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{DA570E24-EAB4-4535-8E4C-3F8A9B54A909} = {F3199FE5-83BF-427D-8626-003F6FE1A32A}
 		{581FC47B-8E46-4722-B1FD-041EB0B74E53} = {C4F22D83-F940-46EA-8C48-19607E51D1E6}
 		{DB59997D-2249-4F8C-96AC-A7D6FF8105AF} = {C4F22D83-F940-46EA-8C48-19607E51D1E6}
+		{85B940D2-06DB-4610-9056-A54DE192BF18} = {C4F22D83-F940-46EA-8C48-19607E51D1E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D081685-91A6-4E93-9324-5C36C96D8885}
