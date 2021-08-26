@@ -6,9 +6,9 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class TwilioAspNetCoreServiceCollectionExtensions
     {
-        public static IServiceCollection AddTwilioAspNetCoreServices(this IServiceCollection services, IConfigurationSection twilioConfigurationSection)
+        public static IServiceCollection AddTwilioAspNetCoreServices(this IServiceCollection services, IConfigurationSection twilioConfigurationSection, string environmentName)
         {
-            services.AddTwilioServices(twilioConfigurationSection);
+            services.AddTwilioServices(twilioConfigurationSection, environmentName);
             services.AddSingleton<ITwilioSignatureValidator, TwilioSignatureValidator>();
             return services;
         }
